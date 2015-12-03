@@ -12,6 +12,7 @@
   //POST送信が行われたら、下記の処理を実行
   //var_dump($_POST);
   if(isset($_POST) && !empty($_POST)){
+    //テストコメント
 
     $dsn ='mysql:dbname=oneline_bbs;host=localhost';
     $User ='root';
@@ -19,10 +20,6 @@
     $dbh = new PDO($dsn,$User,$password);
     $dbh->query('SET NAMES utf8');
 
-    $nickname = $_POST['nickname'];
-    $comment = $_POST['comment'];
-
-    //SQL文作成
     $sql = 'INSERT INTO `oneline_bbs`.`posts` (`id`, `nickname`, `comment`, `created`) VALUES (NULL, "'.$nickname.'", "'.$comment.'", now());';
     $stmt = $dbh->prepare($sql);
     // insert文実行
@@ -41,6 +38,10 @@
       echo $rec['id'];
       echo $rec['nickname'];
       echo $rec['comment'];
+    $nickname = $_POST['nickname'];
+    $comment = $_POST['comment'];
+
+    //SQL文作成
       echo $rec['created'];
       echo'<br />'; 
     }
